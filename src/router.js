@@ -1,16 +1,7 @@
 import Vue from 'vue'
 import Router from 'vue-router'
+
 import Home from './views/Home.vue'
-import Login from './views/Login.vue'
-import NotFound from './views/404.vue'
-import Main from './views/Main.vue'
-import Table from './views/nav1/Table.vue'
-import Form from './views/nav1/Form.vue'
-import user from './views/nav1/user.vue'
-import Page4 from './views/nav2/Page4.vue'
-import Page5 from './views/nav2/Page5.vue'
-import Page6 from './views/nav3/Page6.vue'
-import echarts from './views/charts/echarts.vue'
 
 Vue.use(Router)
 
@@ -18,13 +9,13 @@ export default new Router({
   routes: [
     {
       path: '/login',
-      component: Login,
+      component: () => import('./views/Login.vue') ,
       name: '',
       hidden: true
     },
     {
       path: '/404',
-      component: NotFound,
+      component: () => import('./views/404.vue'),
       name: '',
       hidden: true
     },
@@ -34,10 +25,10 @@ export default new Router({
       name: '导航一',
       iconCls: 'el-icon-message',//图标样式class
       children: [
-        { path: '/main', component: Main, name: '主页', hidden: true },
-        { path: '/table', component: Table, name: 'Table' },
-        { path: '/form', component: Form, name: 'Form' },
-        { path: '/user', component: user, name: '列表' },
+        { path: '/main', component: () => import('./views/Main.vue'), name: '主页', hidden: true },
+        { path: '/table', component: () => import('./views/nav1/Table.vue'), name: 'Table' },
+        { path: '/form', component: () => import('./views/nav1/Form.vue'), name: 'Form' },
+        { path: '/user', component: () => import('./views/nav1/user.vue'), name: '列表' },
       ]
     },
     {
@@ -46,8 +37,8 @@ export default new Router({
       name: '导航二',
       iconCls: 'fa fa-id-card-o',
       children: [
-        { path: '/page4', component: Page4, name: '页面4' },
-        { path: '/page5', component: Page5, name: '页面5' }
+        { path: '/page4', component: () => import('./views/nav2/Page4.vue'), name: '页面4' },
+        { path: '/page5', component: () => import('./views/nav2/Page5.vue'), name: '页面5' }
       ]
     },
     {
@@ -57,7 +48,7 @@ export default new Router({
       iconCls: 'fa fa-address-card',
       leaf: true,//只有一个节点
       children: [
-        { path: '/page6', component: Page6, name: '导航三' }
+        { path: '/page6', component: () => import('./views/nav3/Page6.vue'), name: '导航三' }
       ]
     },
     {
@@ -66,7 +57,7 @@ export default new Router({
       name: 'Charts',
       iconCls: 'fa fa-bar-chart',
       children: [
-        { path: '/echarts', component: echarts, name: 'echarts' }
+        { path: '/echarts', component: () => import('./views/charts/echarts.vue'), name: 'echarts' }
       ]
     },
     {
