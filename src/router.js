@@ -5,12 +5,13 @@ import Home from './views/Home.vue'
 
 Vue.use(Router)
 
-export default new Router({
+
+  const router = new Router({
   routes: [
     {
       path: '/login',
       component: () => import('./views/Login.vue') ,
-      name: '',
+      name: 'login',
       hidden: true
     },
     {
@@ -66,4 +67,21 @@ export default new Router({
       redirect: { path: '/404' }
     }
   ]
+  
 })
+
+router.beforeEach((to, from, next) => {
+  //NProgress.start();
+  if (to.path == '/login') {
+    sessionStorage.removeItem('user');
+  }
+  let user = JSON.parse(sessionStorage.getItem('user'));
+  if (!user && to.path != '/login') {
+    next({ path: '/login' })
+  } else {
+    next()
+  }
+})
+
+
+export default router
