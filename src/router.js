@@ -26,17 +26,17 @@ Vue.use(Router)
       name: '导航一',
       iconCls: 'el-icon-message',//图标样式class
       children: [
-        { path: '/main', component: () => import('./views/Main.vue'), name: '主页', hidden: true },
+        { path: '/main', component: () => import('./views/Main.vue'), name: 'index', hidden: true },
         { path: '/table', component: () => import('./views/nav1/Table.vue'), name: 'Table' },
         { path: '/form', component: () => import('./views/nav1/Form.vue'), name: 'Form' },
-        { path: '/user', component: () => import('./views/nav1/user.vue'), name: '列表' },
+        { path: '/user', component: () => import('./views/nav1/user.vue'), name: 'user' },
       ]
     },
     {
       path: '/',
       component: Home,
       name: '导航二',
-      iconCls: 'fa fa-id-card-o',
+      iconCls: 'el-icon-menu',
       children: [
         { path: '/page4', component: () => import('./views/nav2/Page4.vue'), name: '页面4' },
         { path: '/page5', component: () => import('./views/nav2/Page5.vue'), name: '页面5' }
@@ -46,7 +46,7 @@ Vue.use(Router)
       path: '/',
       component: Home,
       name: '',
-      iconCls: 'fa fa-address-card',
+      iconCls: 'el-icon-location-outline',
       leaf: true,//只有一个节点
       children: [
         { path: '/page6', component: () => import('./views/nav3/Page6.vue'), name: '导航三' }
@@ -56,7 +56,7 @@ Vue.use(Router)
       path: '/',
       component: Home,
       name: 'Charts',
-      iconCls: 'fa fa-bar-chart',
+      iconCls: 'el-icon-setting',
       children: [
         { path: '/echarts', component: () => import('./views/charts/echarts.vue'), name: 'echarts' }
       ]

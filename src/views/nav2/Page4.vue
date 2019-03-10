@@ -1,18 +1,20 @@
 <template>
   <div>
     <h1>vuex 测试</h1>
-    Clicked: {{ getCount }} times
+    Clicked: {{ count }} times
     <button @click="increment">+</button>
     <button @click="decrement">-</button>
   </div>
 </template>
 
 <script>
-  import { mapGetters } from 'vuex'
-  import { mapActions } from 'vuex'
+  import {mapActions, mapGetters } from 'vuex'
 
   export default {
     computed: {
+      count () {
+      return this.$store.state.count
+    },
   	// 使用对象展开运算符将 getters 混入 computed 对象中
     ...mapGetters([
       'getCount'
