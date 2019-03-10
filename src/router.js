@@ -45,16 +45,6 @@ Vue.use(Router)
     {
       path: '/',
       component: Home,
-      name: '',
-      iconCls: 'el-icon-location-outline',
-      leaf: true,//只有一个节点
-      children: [
-        { path: '/page6', component: () => import('./views/nav3/Page6.vue'), name: '导航三' }
-      ]
-    },
-    {
-      path: '/',
-      component: Home,
       name: 'Charts',
       iconCls: 'el-icon-setting',
       children: [

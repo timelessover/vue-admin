@@ -12,6 +12,7 @@
     "echarts": "^4.1.0",
     "element-ui": "^2.4.5",
     "font-awesome": "^4.7.0",
+    "gsap": "^2.1.2",
     "mockjs": "^1.0.1-beta3",
     "vue": "^2.6.6",
     "vue-router": "^3.0.1",

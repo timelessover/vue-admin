@@ -6,7 +6,7 @@
 			</el-col>
 			<el-col :span="10">
 				<div class="tools" @click.prevent="collapse">
-					<i class="fa fa-align-justify"></i>
+					<i class="fa fa-align-justify" :class="{'is-active':collapsed}"></i>
 				</div>
 			</el-col>
 			<el-col :span="4" class="userinfo">
@@ -30,15 +30,14 @@
 							<template slot="title"><i :class="item.iconCls"></i>{{item.name}}</template>
 							<el-menu-item v-for="child in item.children" :index="child.path" :key="child.path" v-if="!child.hidden">{{child.name}}</el-menu-item>
 						</el-submenu>
-						<el-menu-item v-if="item.leaf&&item.children.length>0" :index="item.children[0].path"><i :class="item.iconCls"></i>{{item.children[0].name}}</el-menu-item>
+						
 					</template>
 				</el-menu>
 				<!--导航菜单-折叠后-->
 				<ul class="el-menu el-menu-vertical-demo collapsed" v-if="collapsed" ref="menuCollapsed">
 					<li v-for="(item,index) in $router.options.routes" v-if="!item.hidden" class="el-submenu item">
 						<template v-if="!item.leaf">
-							<div class="el-submenu__title" style="padding-left: 20px;" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"><i :class="item.iconCls"></i></div>
-							
+							<div class="el-submenu__title" style="padding-left: 20px;" @mouseover="showMenu(index,true)" @mouseout="showMenu(index,false)"><i :class="item.iconCls"></i></div>	
 						</template>
 						<template v-else>
 							<li class="el-submenu">
@@ -195,7 +194,12 @@
 				line-height: 60px;
 				cursor: pointer;
 			}
+			.is-active{
+				transform: rotate(90deg);
+			}
+			
 		}
+		
 		.main {
 			display: flex;
 			position: absolute;
@@ -227,6 +231,7 @@
 			.menu-collapsed{
 				flex:0 0 60px;
 				width: 60px;
+				transition: width 1s;
 			}
 			.menu-expanded{
 				flex:0 0 230px;
