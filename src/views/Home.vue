@@ -166,7 +166,6 @@
 				}
 			}
 			.logo {
-				//width:230px;
 				height:60px;
 				font-size: 22px;
 				padding-left:20px;
@@ -199,7 +198,6 @@
 		}
 		.main {
 			display: flex;
-			// background: #324057;
 			position: absolute;
 			top: 60px;
 			bottom: 0px;
@@ -207,9 +205,6 @@
 			aside {
 				flex:0 0 230px;
 				width: 230px;
-				// position: absolute;
-				// top: 0px;
-				// bottom: 0px;
 				.el-menu{
 					height: 100%;
 				}
@@ -238,17 +233,10 @@
 				width: 230px;
 			}
 			.content-container {
-				// background: #f1f2f7;
 				flex:1;
-				// position: absolute;
-				// right: 0px;
-				// top: 0px;
-				// bottom: 0px;
-				// left: 230px;
 				overflow-y: scroll;
 				padding: 20px;
 				.breadcrumb-container {
-					//margin-bottom: 15px;
 					.title {
 						width: 200px;
 						float: left;
