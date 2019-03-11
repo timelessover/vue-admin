@@ -105,7 +105,7 @@
 </template>
 
 <script>
-	import util from '../../common/js/util'
+	import util from '../../utils/util'
 	//import NProgress from 'nprogress'
 	import { getUserListPage, removeUser, batchRemoveUser, editUser, addUser } from '../../api/api';
 
@@ -177,7 +177,7 @@
 					this.total = res.data.total;
 					this.users = res.data.users;
 					this.listLoading = false;
-					//NProgress.done();
+				
 				});
 			},
 			//删除
@@ -186,11 +186,10 @@
 					type: 'warning'
 				}).then(() => {
 					this.listLoading = true;
-					//NProgress.start();
 					let para = { id: row.id };
 					removeUser(para).then((res) => {
 						this.listLoading = false;
-						//NProgress.done();
+						
 						this.$message({
 							message: '删除成功',
 							type: 'success'
@@ -223,12 +222,12 @@
 					if (valid) {
 						this.$confirm('确认提交吗？', '提示', {}).then(() => {
 							this.editLoading = true;
-							//NProgress.start();
+					
 							let para = Object.assign({}, this.editForm);
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							editUser(para).then((res) => {
 								this.editLoading = false;
-								//NProgress.done();
+								
 								this.$message({
 									message: '提交成功',
 									type: 'success'
@@ -247,7 +246,7 @@
 					if (valid) {
 						this.$confirm('确认提交吗？', '提示', {}).then(() => {
 							this.addLoading = true;
-							//NProgress.start();
+						
 							let para = Object.assign({}, this.addForm);
 							para.birth = (!para.birth || para.birth == '') ? '' : util.formatDate.format(new Date(para.birth), 'yyyy-MM-dd');
 							addUser(para).then((res) => {
@@ -268,18 +267,18 @@
 			selsChange: function (sels) {
 				this.sels = sels;
 			},
-			//批量删除
+			
 			batchRemove: function () {
 				var ids = this.sels.map(item => item.id).toString();
 				this.$confirm('确认删除选中记录吗？', '提示', {
 					type: 'warning'
 				}).then(() => {
 					this.listLoading = true;
-					//NProgress.start();
+					
 					let para = { ids: ids };
 					batchRemoveUser(para).then((res) => {
 						this.listLoading = false;
-						//NProgress.done();
+						
 						this.$message({
 							message: '删除成功',
 							type: 'success'

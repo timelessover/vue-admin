@@ -20,7 +20,6 @@ body {
     Microsoft YaHei, SimSun, sans-serif;
   font-size: 14px;
   -webkit-font-smoothing: antialiased;
-  
 }
 
 #app {

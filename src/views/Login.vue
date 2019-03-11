@@ -1,6 +1,6 @@
 <template>
-  <div class="container-warpper" id="container-warpper">
-    
+  <div class="container-warpper" >
+    <div id="BGParticle"></div>
     <el-form
       :model="ruleForm2"
       :rules="rules2"
@@ -37,7 +37,6 @@
 <script>
 import BGParticle from '../utils/BGParticle'
 import { requestLogin } from "../api/api";
-//import NProgress from 'nprogress'
 export default {
   data() {
     return {
@@ -49,18 +48,16 @@ export default {
       rules2: {
         account: [
           { required: true, message: "请输入账号", trigger: "blur" }
-          //{ validator: validaePass }
         ],
         checkPass: [
           { required: true, message: "请输入密码", trigger: "blur" }
-          //{ validator: validaePass2 }
         ]
       },
       checked: true
     };
   },
-  created(){
-    this.particle = new BGParticle('container-warpper')
+  mounted(){
+    this.particle = new BGParticle('BGParticle')
     this.particle.init()
   },
   methods: {
@@ -68,19 +65,15 @@ export default {
       this.$refs.ruleForm2.resetFields();
     },
     handleSubmit2(ev) {
-      var _this = this;
       this.$refs.ruleForm2.validate(valid => {
         if (valid) {
-          //_this.$router.replace('/table');
           this.logining = true;
-          //NProgress.start();
           var loginParams = {
             username: this.ruleForm2.account,
             password: this.ruleForm2.checkPass
           };
           requestLogin(loginParams).then(data => {
             this.logining = false;
-            //NProgress.done();
             let { msg, code, user } = data;
             if (code !== 200) {
               this.$message({
@@ -110,7 +103,6 @@ export default {
     display:flex;
     justify-content: center;
     align-items: center;
-
   }
   .login-container {
     -webkit-border-radius: 5px;
@@ -122,6 +114,7 @@ export default {
     padding: 35px 35px 15px 35px;
     background: #fff;
     border: 1px solid #eaeaea;
+    z-index: 999;
    
     .title {
       margin: 0px auto 40px auto;

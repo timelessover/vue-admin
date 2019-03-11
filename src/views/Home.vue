@@ -6,7 +6,7 @@
 			</el-col>
 			<el-col :span="10">
 				<div class="tools" @click.prevent="collapse">
-					<i class="fa fa-align-justify" :class="{'is-active':collapsed}"></i>
+					<i class="fa fa-align-justify"  ref="icon"></i>
 				</div>
 			</el-col>
 			<el-col :span="4" class="userinfo">
@@ -50,8 +50,8 @@
 			<section class="content-container">
 				<div class="grid-content bg-purple-light">
 					<el-col :span="24" class="breadcrumb-container">
-						<strong class="title">{{$route.name}}</strong>
-						<el-breadcrumb separator="/" class="breadcrumb-inner">
+						<el-breadcrumb separator="/">
+							<el-breadcrumb-item :to="{ path: '/' }">首页</el-breadcrumb-item>
 							<el-breadcrumb-item v-for="item in $route.matched" :key="item.path">
 								{{ item.name }}
 							</el-breadcrumb-item>
@@ -117,9 +117,16 @@
 			//折叠导航栏
 			collapse:function(){
 				this.collapsed=!this.collapsed;
+				let icon = this.$refs.icon
+				icon.style.transition="all 0.2s"
+				if(this.collapsed){icon.style.transform = "rotate(90deg)"}
+					else
+				{icon.style.transform = "rotate(0)"}
+				
 			},
 			showMenu(i,status){
 				this.$refs.menuCollapsed.getElementsByClassName('submenu-hook-'+i)[0].style.display=status?'block':'none';
+				
 			}
 		},
 		mounted() {
@@ -229,26 +236,22 @@
 				}
 			}
 			.menu-collapsed{
-				flex:0 0 60px;
-				width: 60px;
-				transition: width 1s;
-			}
-			.menu-expanded{
-				flex:0 0 230px;
-				width: 230px;
+				flex:0 0 70px;
 			}
 			.content-container {
 				flex:1;
 				overflow-y: scroll;
 				padding: 20px;
 				.breadcrumb-container {
+					    height: 20px;
+    					border-bottom: 1px solid #20a0ff;
 					.title {
 						width: 200px;
 						float: left;
 						color: #475669;
 					}
 					.breadcrumb-inner {
-						float: right;
+						float: left;
 					}
 				}
 				.content-wrapper {

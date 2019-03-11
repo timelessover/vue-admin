@@ -24,6 +24,7 @@ class BGParticle {
         this.canvas.style.position = 'fixed'
         this.canvas.style.top = '0'
         this.canvas.style.left = '0'
+        console.log(document.getElementById(this.id))
         document.getElementById(this.id).appendChild(this.canvas)
     }
 
@@ -38,6 +39,7 @@ class BGParticle {
                 this.points.push(p);
             }
         }
+        
         //给每个粒子添加新属性closest、radius
         for (let i = 0; i < this.points.length; i++) {
             let closest = [];
@@ -83,7 +85,7 @@ class BGParticle {
         if (!point.pointActive) return;
         ctx.beginPath();
         ctx.arc(point.x, point.y, point.radius, 0, 2 * Math.PI, false);
-        ctx.fillStyle = 'rgba(156,217,249,' + point.pointActive + ')';
+        ctx.fillStyle = `rgba(245,247,251,${point.pointActive})`;
         ctx.fill();
     }
 
@@ -93,7 +95,7 @@ class BGParticle {
             ctx.beginPath();
             ctx.moveTo(point.x, point.y);
             ctx.lineTo(item.x, item.y);
-            ctx.strokeStyle = 'rgba(156,217,249,' + point.lineActive + ')';
+            ctx.strokeStyle = `rgba(245,247,251,${point.lineActive} )`;
             ctx.stroke();
         }
     }
