@@ -1,5 +1,10 @@
 <template>
-  <div class="container-warpper" >
+  <div class="container-warpper">
+    <el-card class="box-card">
+      <div class="text item">账号:admin</div>
+      <div class="text item">密码:123456</div>
+    </el-card>
+
     <div id="BGParticle"></div>
     <el-form
       :model="ruleForm2"
@@ -35,7 +40,7 @@
 </template>
 
 <script>
-import BGParticle from '../utils/BGParticle'
+import BGParticle from "../utils/BGParticle";
 import { requestLogin } from "../api/api";
 export default {
   data() {
@@ -46,19 +51,15 @@ export default {
         checkPass: "123456"
       },
       rules2: {
-        account: [
-          { required: true, message: "请输入账号", trigger: "blur" }
-        ],
-        checkPass: [
-          { required: true, message: "请输入密码", trigger: "blur" }
-        ]
+        account: [{ required: true, message: "请输入账号", trigger: "blur" }],
+        checkPass: [{ required: true, message: "请输入密码", trigger: "blur" }]
       },
       checked: true
     };
   },
-  mounted(){
-    this.particle = new BGParticle('BGParticle')
-    this.particle.init()
+  mounted() {
+    this.particle = new BGParticle("BGParticle");
+    this.particle.init();
   },
   methods: {
     handleReset2() {
@@ -96,33 +97,45 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-  .container-warpper{
-    height:100vh;
-    width:100vw;
-    background:#2d3a4b;
-    display:flex;
-    justify-content: center;
-    align-items: center;
+.container-warpper {
+  height: 100vh;
+  width: 100vw;
+  background: #2d3a4b;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.el-card {
+  position: absolute;
+  right: 20px;
+  top: 20px;
+}
+.text {
+  font-size: 14px;
+}
+
+.item {
+  padding: 18px;
+}
+.login-container {
+  -webkit-border-radius: 5px;
+  border-radius: 5px;
+  -moz-border-radius: 5px;
+  background-clip: padding-box;
+  margin: 180px auto;
+  width: 350px;
+  padding: 35px 35px 15px 35px;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  z-index: 999;
+
+  .title {
+    margin: 0px auto 40px auto;
+    text-align: center;
+    color: #505458;
   }
-  .login-container {
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-border-radius: 5px;
-    background-clip: padding-box;
-    margin: 180px auto;
-    width: 350px;
-    padding: 35px 35px 15px 35px;
-    background: #fff;
-    border: 1px solid #eaeaea;
-    z-index: 999;
-   
-    .title {
-      margin: 0px auto 40px auto;
-      text-align: center;
-      color: #505458;
-    }
-    .remember {
-      margin: 0px 0px 35px 0px;
-    }
+  .remember {
+    margin: 0px 0px 35px 0px;
   }
+}
 </style>
